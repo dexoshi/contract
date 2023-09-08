@@ -45,6 +45,8 @@ contract Dexoshi is ERC1155, Ownable {
         require(balanceOf(_to, _tokenB) > 0, "Token B not owned");
         uint256 tokenC = merge(_tokenA, _tokenB);
         require(balanceOf(_to, tokenC) == 0, "Already Owned");
+        _burn(_to, _tokenA, 1);
+        _burn(_to, _tokenB, 1);
         _mint(_to, tokenC, 1, "");
     }
 
@@ -58,6 +60,8 @@ contract Dexoshi is ERC1155, Ownable {
         require(balanceOf(msg.sender, _tokenB) > 0, "Token B not owned");
         uint256 tokenC = merge(_tokenA, _tokenB);
         require(balanceOf(msg.sender, tokenC) == 0, "Already Owned");
+        _burn(msg.sender, _tokenA, 1);
+        _burn(msg.sender, _tokenB, 1);
         _mint(msg.sender, tokenC, 1, "");
     }
 }

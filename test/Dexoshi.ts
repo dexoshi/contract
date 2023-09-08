@@ -35,17 +35,24 @@ describe("Dexoshi", function () {
     const tokenC = 6;
     const dexoshi = await ethers.deployContract("Dexoshi");
 
+    // mint token A
     expect(await dexoshi.balanceOf(to, tokenA)).to.equal(0);
     await dexoshi.ownerMint(to, tokenA);
     expect(await dexoshi.balanceOf(to, tokenA)).to.equal(1);
 
+    // mint token B
     expect(await dexoshi.balanceOf(to, tokenB)).to.equal(0);
     await dexoshi.ownerMint(to, tokenB);
     expect(await dexoshi.balanceOf(to, tokenB)).to.equal(1);
 
+    // merge tokenA and tokenB to tokenC
     expect(await dexoshi.balanceOf(to, tokenC)).to.equal(0);
     await dexoshi.ownerMerge(to, tokenA, tokenB);
     expect(await dexoshi.balanceOf(to, tokenC)).to.equal(1);
+
+    // tokenA and tokenB are burned
+    expect(await dexoshi.balanceOf(to, tokenA)).to.equal(0);
+    expect(await dexoshi.balanceOf(to, tokenB)).to.equal(0);
   });
 
   it("Player can merge", async () => {
@@ -55,17 +62,24 @@ describe("Dexoshi", function () {
     const tokenC = 6;
     const dexoshi = await ethers.deployContract("Dexoshi");
 
+    // mint token A
     expect(await dexoshi.balanceOf(player.address, tokenA)).to.equal(0);
     await dexoshi.ownerMint(player.address, tokenA);
     expect(await dexoshi.balanceOf(player.address, tokenA)).to.equal(1);
 
+    // mint token B
     expect(await dexoshi.balanceOf(player.address, tokenB)).to.equal(0);
     await dexoshi.ownerMint(player.address, tokenB);
     expect(await dexoshi.balanceOf(player.address, tokenB)).to.equal(1);
 
+    // merge tokenA and tokenB to tokenC
     expect(await dexoshi.balanceOf(player.address, tokenC)).to.equal(0);
     await dexoshi.connect(player).playerMerge(tokenA, tokenB);
     expect(await dexoshi.balanceOf(player.address, tokenC)).to.equal(1);
+
+    // tokenA and tokenB are burned
+    expect(await dexoshi.balanceOf(player.address, tokenA)).to.equal(0);
+    expect(await dexoshi.balanceOf(player.address, tokenB)).to.equal(0);
   })
 
   it("Cannot merge if tokenB is not owned", async () => {
