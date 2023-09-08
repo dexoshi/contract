@@ -5,9 +5,21 @@ import "@openzeppelin/contracts/token/ERC1155/ERC1155.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 
 contract Dexoshi is ERC1155, Ownable {
-    uint256 public immutable MAX_TOKEN_ID = 255;
+    uint256 public immutable MAX_TOKEN_ID = 256;
 
     constructor() ERC1155("https://example/{id}.json") {}
+
+    /*
+     * Merge
+     * @param _tokenA token id A
+     * @param _tokenB token id B
+     */
+    function merge(
+        uint256 _tokenA,
+        uint256 _tokenB
+    ) public pure returns (uint256 tokenC) {
+        tokenC = (_tokenA * _tokenB) % MAX_TOKEN_ID;
+    }
 
     /*
      * Owner mint
@@ -47,17 +59,5 @@ contract Dexoshi is ERC1155, Ownable {
         uint256 tokenC = merge(_tokenA, _tokenB);
         require(balanceOf(msg.sender, tokenC) == 0, "Already Owned");
         _mint(msg.sender, tokenC, 1, "");
-    }
-
-    /*
-     * Merge
-     * @param _tokenA token id A
-     * @param _tokenB token id B
-     */
-    function merge(
-        uint256 _tokenA,
-        uint256 _tokenB
-    ) public pure returns (uint256 tokenC) {
-        tokenC = (_tokenA * _tokenB) % MAX_TOKEN_ID;
     }
 }
