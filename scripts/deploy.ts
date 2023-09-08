@@ -1,11 +1,11 @@
 import { ethers } from "hardhat";
 
 async function main() {
-  const lock = await ethers.deployContract("Dexoshi");
+  const contract = await ethers.deployContract("Dexoshi");
 
-  await lock.waitForDeployment();
+  const deploy = await contract.waitForDeployment();
 
-  console.log(`Deployed`);
+  console.log(`Deployed contract`, deploy.target);
 }
 
 // We recommend this pattern to be able to use async/await everywhere
