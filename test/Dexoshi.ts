@@ -54,7 +54,7 @@ describe("Dexoshi", function () {
     const to = "0xdD4c825203f97984e7867F11eeCc813A036089D1";
     const tokenA = 2;
     const tokenB = 3;
-    const tokenC = 6;
+    const tokenC = 5;
     const dexoshi = await ethers.deployContract("Dexoshi");
 
     // mint token A
@@ -81,7 +81,7 @@ describe("Dexoshi", function () {
     const [_, player] = await ethers.getSigners();
     const tokenA = 2;
     const tokenB = 3;
-    const tokenC = 6;
+    const tokenC = 5;
     const dexoshi = await ethers.deployContract("Dexoshi");
 
     // mint token A
