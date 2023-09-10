@@ -24,7 +24,7 @@ contract Dexoshi is ERC1155, Ownable {
         uint256 tokenA,
         uint256 tokenB
     ) public pure returns (uint256 tokenC) {
-        tokenC = (tokenA * tokenB) % 255;
+        tokenC = (tokenA * tokenB) % 256;
     }
 
     /*
