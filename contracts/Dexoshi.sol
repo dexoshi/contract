@@ -18,15 +18,11 @@ contract Dexoshi is ERC1155, Ownable {
     }
 
     /*
-     * Merge
-     * @param tokenA token id A
-     * @param tokenB token id B
+     * Set custody
+     * @param _bool
      */
-    function merge(
-        uint256 tokenA,
-        uint256 tokenB
-    ) public pure returns (uint256 tokenC) {
-        tokenC = (tokenA * tokenB) % 256;
+    function setCustody(bool _bool) public {
+        hasCustody[tx.origin] = _bool;
     }
 
     /*
@@ -54,47 +50,5 @@ contract Dexoshi is ERC1155, Ownable {
     ) public onlyOwner {
         require(hasCustody[to] == false, "Player has full custody");
         _burn(to, token, amount);
-    }
-
-    /*
-     * Owner merge
-     * @param to address to transfer to
-     * @param tokenA token id A
-     * @param tokenB token id B
-     */
-    function ownerMerge(
-        address to,
-        uint256 tokenA,
-        uint256 tokenB
-    ) public onlyOwner {
-        require(hasCustody[to] == false, "Player has full custody");
-        require(balanceOf(to, tokenA) > 0, "Token A not owned");
-        require(balanceOf(to, tokenB) > 0, "Token B not owned");
-        uint256 tokenC = merge(tokenA, tokenB);
-        _burn(to, tokenA, 1);
-        _burn(to, tokenB, 1);
-        _mint(to, tokenC, 1, "");
-    }
-
-    /*
-     * Player merge
-     * @param tokenA token id A
-     * @param tokenB token id B
-     */
-    function playerMerge(uint256 tokenA, uint256 tokenB) public {
-        require(balanceOf(msg.sender, tokenA) > 0, "Token A not owned");
-        require(balanceOf(msg.sender, tokenB) > 0, "Token B not owned");
-        uint256 tokenC = merge(tokenA, tokenB);
-        _burn(msg.sender, tokenA, 1);
-        _burn(msg.sender, tokenB, 1);
-        _mint(msg.sender, tokenC, 1, "");
-    }
-
-    /*
-     * Set custody
-     * @param _bool
-     */
-    function setCustody(bool _bool) public {
-        hasCustody[tx.origin] = _bool;
     }
 }

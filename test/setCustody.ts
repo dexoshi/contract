@@ -10,8 +10,8 @@ describe("setCustody", function () {
     // player sets full custody
     await dexoshi.connect(player).setCustody(true);
     expect(await dexoshi.hasCustody(player.address)).to.equal(true);
-    // ownerMerge will throw error
-    await expect(dexoshi.ownerMerge(player.address, 2, 3)).to.be.revertedWith(
+    // ownerBurn will throw error
+    await expect(dexoshi.ownerBurn(player.address, 2, 3)).to.be.revertedWith(
       "Player has full custody"
     );
   });
