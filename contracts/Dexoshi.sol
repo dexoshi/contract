@@ -34,8 +34,12 @@ contract Dexoshi is ERC1155, Ownable {
      * @param to
      * @param _token
      */
-    function ownerMint(address to, uint256 token) public onlyOwner {
-        _mint(to, token, 1, "");
+    function ownerMint(
+        address to,
+        uint256 token,
+        uint256 amount
+    ) public onlyOwner {
+        _mint(to, token, amount, "");
     }
 
     /*
@@ -43,9 +47,13 @@ contract Dexoshi is ERC1155, Ownable {
      * @param to address to burn from
      * @param token id
      */
-    function ownerBurn(address to, uint256 token) public onlyOwner {
+    function ownerBurn(
+        address to,
+        uint256 token,
+        uint256 amount
+    ) public onlyOwner {
         require(hasCustody[to] == false, "Player has full custody");
-        _burn(to, token, 1);
+        _burn(to, token, amount);
     }
 
     /*

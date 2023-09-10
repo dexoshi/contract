@@ -7,16 +7,17 @@ describe("ownerMerge", function () {
     const tokenA = 2;
     const tokenB = 3;
     const tokenC = 6;
+    const amount = 1;
     const dexoshi = await ethers.deployContract("Dexoshi");
 
     // mint token A
     expect(await dexoshi.balanceOf(to, tokenA)).to.equal(0);
-    await dexoshi.ownerMint(to, tokenA);
+    await dexoshi.ownerMint(to, tokenA, amount);
     expect(await dexoshi.balanceOf(to, tokenA)).to.equal(1);
 
     // mint token B
     expect(await dexoshi.balanceOf(to, tokenB)).to.equal(0);
-    await dexoshi.ownerMint(to, tokenB);
+    await dexoshi.ownerMint(to, tokenB, amount);
     expect(await dexoshi.balanceOf(to, tokenB)).to.equal(1);
 
     // merge tokenA and tokenB to tokenC
@@ -33,10 +34,11 @@ describe("ownerMerge", function () {
     const to = "0xdD4c825203f97984e7867F11eeCc813A036089D1";
     const tokenA = 2;
     const tokenB = 3;
+    const amount = 1;
     const dexoshi = await ethers.deployContract("Dexoshi");
 
     expect(await dexoshi.balanceOf(to, tokenA)).to.equal(0);
-    await dexoshi.ownerMint(to, tokenA);
+    await dexoshi.ownerMint(to, tokenA, amount);
     expect(await dexoshi.balanceOf(to, tokenA)).to.equal(1);
 
     await expect(dexoshi.ownerMerge(to, tokenA, tokenB)).to.be.revertedWith(
@@ -47,10 +49,11 @@ describe("ownerMerge", function () {
   it("Owner cannot merge if player has custody", async () => {
     const [_, player] = await ethers.getSigners();
     const token = 1;
+    const amount = 1;
     const dexoshi = await ethers.deployContract("Dexoshi");
     // mint token A
     expect(await dexoshi.balanceOf(player.address, token)).to.equal(0);
-    await dexoshi.ownerMint(player.address, token);
+    await dexoshi.ownerMint(player.address, token, amount);
     expect(await dexoshi.balanceOf(player.address, token)).to.equal(1);
     // player sets custody
     expect(await dexoshi.hasCustody(player.address)).to.equal(false);

@@ -7,16 +7,17 @@ describe("playerMerge", function () {
     const tokenA = 2;
     const tokenB = 3;
     const tokenC = 6;
+    const amount = 1
     const dexoshi = await ethers.deployContract("Dexoshi");
 
     // mint token A
     expect(await dexoshi.balanceOf(player.address, tokenA)).to.equal(0);
-    await dexoshi.ownerMint(player.address, tokenA);
+    await dexoshi.ownerMint(player.address, tokenA, amount);
     expect(await dexoshi.balanceOf(player.address, tokenA)).to.equal(1);
 
     // mint token B
     expect(await dexoshi.balanceOf(player.address, tokenB)).to.equal(0);
-    await dexoshi.ownerMint(player.address, tokenB);
+    await dexoshi.ownerMint(player.address, tokenB, amount);
     expect(await dexoshi.balanceOf(player.address, tokenB)).to.equal(1);
 
     // merge tokenA and tokenB to tokenC
