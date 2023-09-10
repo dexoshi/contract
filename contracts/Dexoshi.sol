@@ -5,6 +5,8 @@ import "@openzeppelin/contracts/token/ERC1155/ERC1155.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 
 contract Dexoshi is ERC1155, Ownable {
+    mapping(address => bool) public hasCustody;
+
     constructor() ERC1155("https://example/{id}.json") {}
 
     /*
@@ -47,6 +49,7 @@ contract Dexoshi is ERC1155, Ownable {
         uint256 tokenA,
         uint256 tokenB
     ) public onlyOwner {
+        require(hasCustody[to] == false, "Player has full custody");
         require(balanceOf(to, tokenA) > 0, "Token A not owned");
         require(balanceOf(to, tokenB) > 0, "Token B not owned");
         uint256 tokenC = merge(tokenA, tokenB);
@@ -67,5 +70,13 @@ contract Dexoshi is ERC1155, Ownable {
         _burn(msg.sender, tokenA, 1);
         _burn(msg.sender, tokenB, 1);
         _mint(msg.sender, tokenC, 1, "");
+    }
+
+    /*
+     * Set custody
+     * @param _bool
+     */
+    function setCustody(bool _bool) public {
+        hasCustody[tx.origin] = _bool;
     }
 }
