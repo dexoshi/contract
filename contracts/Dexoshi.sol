@@ -32,7 +32,8 @@ contract Dexoshi is ERC1155, Ownable {
     /*
      * Owner mint
      * @param to
-     * @param _token
+     * @param token id
+     * @param amount
      */
     function ownerMint(
         address to,
@@ -46,6 +47,7 @@ contract Dexoshi is ERC1155, Ownable {
      * Owner burn
      * @param to address to burn from
      * @param token id
+     * @param amount
      */
     function ownerBurn(
         address to,
