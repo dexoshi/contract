@@ -20,7 +20,7 @@ export ETHERSCAN_KEY=XMFCFQKZN4X1BCXR7JGTNR1N5SWC3UI1CV
 
 `npm run deploy`
 
-`Deployed contract: <0x_CONTRACT_ADDRESS>`
+Deployed contract: <0x_CONTRACT_ADDRESS>
 
 `npm run verify <0x_CONTRACT_ADDRESS>`
 
