@@ -7,7 +7,7 @@ import "@openzeppelin/contracts/access/Ownable.sol";
 contract Dexoshi is ERC1155, Ownable {
     mapping(address => bool) public hasCustody;
 
-    constructor() ERC1155("https://ipfs.io/ipfs/bafybeib65p2miyvw4oabbg4itjaore33bxj2r5zozfabqv7cigsyradiga/{id}.json") {}
+    constructor() ERC1155("https://ipfs.io/ipfs/bafybeiacu75qlt6kuleqosstzyekc4r4lwgtwpytpzibyg36hzxis4xx3m/{id}.json") {}
 
     /*
      * Contract level URI
