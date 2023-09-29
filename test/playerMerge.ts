@@ -29,4 +29,32 @@ describe("playerMerge", function () {
     expect(await dexoshi.balanceOf(player.address, tokenA)).to.equal(0);
     expect(await dexoshi.balanceOf(player.address, tokenB)).to.equal(0);
   });
+
+  it("Player can merge big numbers", async () => {
+    const [_, player] = await ethers.getSigners();
+    const tokenA = 60;
+    const tokenB = 50;
+    const tokenC = 56; // 60 * 50 % 64
+    const amount = 1
+    const dexoshi = await ethers.deployContract("Dexoshi");
+
+    // mint token A
+    expect(await dexoshi.balanceOf(player.address, tokenA)).to.equal(0);
+    await dexoshi.ownerMint(player.address, tokenA, amount);
+    expect(await dexoshi.balanceOf(player.address, tokenA)).to.equal(1);
+
+    // mint token B
+    expect(await dexoshi.balanceOf(player.address, tokenB)).to.equal(0);
+    await dexoshi.ownerMint(player.address, tokenB, amount);
+    expect(await dexoshi.balanceOf(player.address, tokenB)).to.equal(1);
+
+    // merge tokenA and tokenB to tokenC
+    expect(await dexoshi.balanceOf(player.address, tokenC)).to.equal(0);
+    await dexoshi.connect(player).playerMerge(tokenA, tokenB);
+    expect(await dexoshi.balanceOf(player.address, tokenC)).to.equal(1);
+
+    // tokenA and tokenB are burned
+    expect(await dexoshi.balanceOf(player.address, tokenA)).to.equal(0);
+    expect(await dexoshi.balanceOf(player.address, tokenB)).to.equal(0);
+  });
 });
