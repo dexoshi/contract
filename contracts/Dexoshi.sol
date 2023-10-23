@@ -14,7 +14,7 @@ contract Dexoshi is ERC1155, Ownable {
      */
     function contractURI() public pure returns (string memory) {
         return
-            "data:text/json;charset=utf-8,%7B%22name%22%3A%22Dexoshi%22%2C%22description%22%3A%22Dexoshi%20is%20a%20Lens%20trading%20card%20game%20on%20the%20blockchain.%20There%20are%20a%20total%20of%20255%20unique%20cards%20and%20amount%20of%20individual%20cards%20can%20be%20infinite.%20But%20not%20all%20cards%20are%20equal...%22%2C%22image%22%3A%22https%3A%2F%2Fipfs.io%2Fipfs%2Fbafybeiasmykcoebpnrhuuminmczqlvqeimuxtfwyuku2bh2mzi75satrgy%2F222.png%22%2C%22external_link%22%3A%22https%3A%2F%2Fwww.lensfrens.xyz%2Fdexoshi.lens%22%2C%22seller_fee_basis_points%22%3A500%2C%22fee_recipient%22%3A%220xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266%22%7D";
+            "data:text/json;charset=utf-8,%7B%22name%22%3A%22Dexoshi%22%2C%22description%22%3A%22Dexoshi%20is%20a%20Lens%20trading%20card%20game%20on%20the%20blockchain.%20There%20are%20a%20total%20of%2064%20unique%20cards%20and%20amount%20of%20individual%20cards%20can%20be%20infinite.%20But%20not%20all%20cards%20are%20equal...%22%2C%22image%22%3A%22https%3A%2F%2Fipfs.io%2Fipfs%2Fbafybeiasmykcoebpnrhuuminmczqlvqeimuxtfwyuku2bh2mzi75satrgy%2F222.png%22%2C%22external_link%22%3A%22https%3A%2F%2Fwww.lensfrens.xyz%2Fdexoshi.lens%22%2C%22seller_fee_basis_points%22%3A500%2C%22fee_recipient%22%3A%220xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266%22%7D";
     }
 
     /*

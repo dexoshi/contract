@@ -10,7 +10,7 @@ describe("contractURI", function () {
     const jsonAsString = JSON.stringify({
       name: "Dexoshi",
       description:
-        "Dexoshi is a Lens trading card game on the blockchain. There are a total of 255 unique cards and amount of individual cards can be infinite. But not all cards are equal...",
+        "Dexoshi is a Lens trading card game on the blockchain. There are a total of 64 unique cards and amount of individual cards can be infinite. But not all cards are equal...",
       image:
         "https://ipfs.io/ipfs/bafybeiasmykcoebpnrhuuminmczqlvqeimuxtfwyuku2bh2mzi75satrgy/222.png",
       external_link: "https://www.lensfrens.xyz/dexoshi.lens",
