@@ -15,7 +15,7 @@ describe("contractURI", function () {
         "https://ipfs.io/ipfs/bafybeiasmykcoebpnrhuuminmczqlvqeimuxtfwyuku2bh2mzi75satrgy/222.png",
       external_link: "https://www.lensfrens.xyz/dexoshi.lens",
       seller_fee_basis_points: 500, // Indicates a 5% seller fee.
-      fee_recipient: signer[0].address,
+      fee_recipient: "0xEAb187Db2DA132BfA1349b6fd6e10AD0E9A389C6", // signer[0].address
     });
 
     // Encode as data URI
